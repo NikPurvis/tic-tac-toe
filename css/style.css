@@ -1,0 +1,100 @@
+body {
+    background: steelblue;
+}
+
+.buttons {
+    width: 600px;
+    margin-top: 50px;  
+}
+
+#button {
+    text-align: center;
+}
+
+#reset {
+    margin: auto;
+    padding: 10px;
+    width: 200px;
+    font-size: 20px;
+    border: 2px solid black;
+}
+
+#message {
+    margin: 20px;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: goldenrod;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+}
+
+#playgrid {
+    width: 600px;    
+}
+
+#topRow, #centerRow, #bottomRow {
+    display: flex;
+}
+
+#topLeft, #topCenter, #topRight, #centerLeft, #centerCenter, #centerRight, #bottomLeft, #bottomCenter, #bottomRight {
+   width: 200px;
+   height: 200px;
+   font-size: 80px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 200px;
+}
+#topLeft {
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+#topCenter {
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+}
+
+#topRight {
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+#centerLeft {
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+#centerCenter {
+    border: 2px solid black;
+}
+
+#centerRight {
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+#bottomLeft {
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+}
+
+#bottomCenter {
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+}
+
+#bottomRight {
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+}
+.xo {
+    
+}
