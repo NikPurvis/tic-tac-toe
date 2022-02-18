@@ -8,35 +8,53 @@
     <title>Tic-Tac-Toe</title>
 </head>
 <body>
-    <h1>Tic-Tac-Toe</h1>
+    <div id="head"><h1>Tic-Tac-Toe</h1>
+        <h2 id="message">A game of grid-based fun for all.</h2>
+    </div>
 
-    <p id="message"></p>
-
-    <div id="container">
+    <div id="main">
         <div id="playgrid">
-            <div id="topRow">
-                <div class="playbox" id="topLeft"></div>
-                <div class="playbox" id="topCenter"></div>
-                <div class="playbox" id="topRight"></div>
+            <div class="grid-row" id="top-row">
+                <div class="grid-box" id="box0">
+                    <p class="move"></p>
+                </div>
+                <div class="grid-box" id="box1">
+                    <p class="move"></p>
+                </div>
+                <div class="grid-box" id="box2">
+                    <p class="move"></p>
+                </div>
             </div>
-            <div id="centerRow">
-                <div class="playbox" id="centerLeft"></div>
-                <div class="playbox" id="centerCenter"></div>
-                <div class="playbox" id="centerRight"></div>
+            <div class="grid-row" id="center-row">
+                <div class="grid-box" id="box3">
+                    <p class="move"></p>
+                </div>
+                <div class="grid-box" id="box4">
+                    <p class="move"></p>
+                </div>
+                <div class="grid-box" id="box5">
+                    <p class="move"></p>
+                </div>
             </div>
-            <div id="bottomRow">
-                <div class="playbox" id="bottomLeft"></div>
-                <div class="playbox" id="bottomCenter"></div>
-                <div class="playbox" id="bottomRight"></div>
+            <div class="grid-row" id="bottom-row">
+                <div class="grid-box" id="box6">
+                    <p class="move"></p>
+                </div>
+                <div class="grid-box" id="box7">
+                    <p class="move"></p>
+                </div>
+                <div class="grid-box" id="box8">
+                    <p class="move"></p>
+                </div>
             </div>
         </div>
+
+        <div id="contain-buttons">
+            <button class="button" id="reset">RESET GAME</button>
+        </div>
+
     </div>
 
-    <div class="buttons">
-        <p id="button">
-            <button id="reset">RESET</button>
-        </p>
-    </div>
 
     <script src="js/app.js"></script>
 </body>
