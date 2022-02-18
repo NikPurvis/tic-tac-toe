@@ -1,4 +1,5 @@
 
+// Creating all the element variables so we can easily select them later.
 const selectBox0 = document.getElementById("box0")
 const selectBox1 = document.getElementById("box1")
 const selectBox2 = document.getElementById("box2")
@@ -14,10 +15,14 @@ const boxText = document.getElementsByClassName("move")
 const resetButton = document.getElementById("reset")
 const message = document.getElementById("message")
 
+// Controller variables to move the game forward or stop it.
 let moveNumber = 0
 let moveExOrOh = "X"
 let gameOver = false
-let gameMoves = []
+
+// Leaving in as a reminder that I was going to try to make this work
+// with an array/object situation
+// let gameMoves = []
 
 
 // Objectives
@@ -56,24 +61,27 @@ let gameMoves = []
 // Add an AI that can beat you every time with the mini-max algorithm.
 
 
-// function to switch the next move to X or O depending on what was
+// Function to switch the next move to X or O depending on what was
 // last used, display a message to the user about whose turn it is,
 // track the number of moves, and stop the game if there are no more.
 const nextMove = () => {
         checkWinner()
         moveNumber = moveNumber + 1
-        console.log("that was move#", moveNumber)
+        // console.log("that was move#", moveNumber)
         if (moveNumber === 9) {
             gameOver = true
             message.innerText = "No more moves. It's a tie! Hit RESET GAME to play again."
             } else {
             if (moveExOrOh === "X") {
                 moveExOrOh = "O"
+                // This was the only way I could find to keep the "your
+                // turn" message from overriding the winning message.
                 if (gameOver === false) {
                     message.innerText = "O, it's your turn!"
                 }
             } else {
                 moveExOrOh = "X"
+                // Same as above, needed to prevent the message overwrite.
                 if (gameOver === false) {
                     message.innerText = "X, you're up!"
                 }
@@ -81,7 +89,7 @@ const nextMove = () => {
        }
     }
 
-// function accepting the ID of the box selected when called and
+// Function accepting the ID of the box selected when called and
 // returning true if the box is filled and false if it's free
 const filledSquare = (box) => {
     if (boxText[box].innerText) {
@@ -98,62 +106,78 @@ const filledSquare = (box) => {
 // Again, there must be a cleaner, quicker way of doing this, but it
 // works!
 const checkWinner = () => {
+        // top row
     if ((boxText[0].innerText === "X"
         && boxText[1].innerText === "X"
         && boxText[2].innerText === "X")
+        // left column
         || (boxText[0].innerText === "X"
         && boxText[3].innerText === "X"
         && boxText[6].innerText === "X")
+        // right diagonal
         || (boxText[0].innerText === "X"
         && boxText[4].innerText === "X"
         && boxText[8].innerText === "X")
+        // middle column
         || (boxText[1].innerText === "X"
         && boxText[4].innerText === "X"
         && boxText[7].innerText === "X")
+        // right column
         || (boxText[2].innerText === "X"
         && boxText[5].innerText === "X"
         && boxText[8].innerText === "X")
+        // middle row
         || (boxText[3].innerText === "X"
         && boxText[4].innerText === "X"
         && boxText[5].innerText === "X")
+        // bottom row
         || (boxText[6].innerText === "X"
         && boxText[7].innerText === "X"
         && boxText[8].innerText === "X")
+        // left diagonal
         || (boxText[2].innerText === "X"
         && boxText[4].innerText === "X"
         && boxText[6].innerText === "X")
         ) {
             message.innerText = "Congratulations X, you won!"
-            console.log("x won!")
+            //console.log("x won!")
             gameOver = true
         } else if (
+        // top row
         (boxText[0].innerText === "O"
         && boxText[1].innerText === "O"
         && boxText[2].innerText === "O")
+        // left column
         || (boxText[0].innerText === "O"
         && boxText[3].innerText === "O"
         && boxText[6].innerText === "O")
+        // right diagonal
         || (boxText[0].innerText === "O"
         && boxText[4].innerText === "O"
         && boxText[8].innerText === "O")
+        // middle column
         || (boxText[1].innerText === "O"
         && boxText[4].innerText === "O"
         && boxText[7].innerText === "O")
+        // right column
         || (boxText[2].innerText === "O"
         && boxText[5].innerText === "O"
         && boxText[8].innerText === "O")
+        // middle row
         || (boxText[3].innerText === "O"
         && boxText[4].innerText === "O"
         && boxText[5].innerText === "O")
+        // bottom row
         || (boxText[6].innerText === "O"
         && boxText[7].innerText === "O"
         && boxText[8].innerText === "O")
+        // left diagonal
         || (boxText[2].innerText === "O"
         && boxText[4].innerText === "O"
         && boxText[6].innerText === "O")
         ) {
             message.innerText = "Let's hear it for our big winner, O!"
-            console.log("o won!")
+            // console.log("o won!")
             gameOver = true
         }
 }
@@ -162,15 +186,15 @@ const checkWinner = () => {
 // which then drives the other actions of the game.
 // This is the exact opposite of DRY, this is absolutely sodden and
 // dripping wet, but it WORKS, so it's what I'm going with for now.
-// I think an array (or object? probably object) holding square
+// I think an array (or object? probably object) holding square/move
 // information would work great. Could include position on the board,
-// if it's taken, X or O, etc.
+// if the square's taken, X or O, etc.
 const click0 = () => {
     if (gameOver === true) {
         message.innerText = "The game's over! Press RESET GAME to play again."
     } else {
         if (filledSquare(0) === true) {
-            message.innerText = "Someone's already moved there"
+            message.innerText = "That square's occupied, try again."
         } else {
             boxText[0].innerText = moveExOrOh
             nextMove()            
@@ -182,7 +206,7 @@ const click1 = () => {
         message.innerText = "The game's over! Press RESET GAME to play again."
     } else {
         if (filledSquare(1) === true) {
-            message.innerText = "Someone's already moved there"
+            message.innerText = "That square's occupied, try again."
         } else {
             boxText[1].innerText = moveExOrOh
             nextMove()
@@ -194,7 +218,7 @@ const click2 = () => {
         message.innerText = "The game's over! Press RESET GAME to play again."
     } else {
         if (filledSquare(2) === true) {
-            message.innerText = "Someone's already moved there"
+            message.innerText = "That square's occupied, try again."
         } else {
             boxText[2].innerText = moveExOrOh
             nextMove()
@@ -206,7 +230,7 @@ const click3 = () => {
         message.innerText = "The game's over! Press RESET GAME to play again."
     } else {
         if (filledSquare(3) === true) {
-            message.innerText = "Someone's already moved there"
+            message.innerText = "That square's occupied, try again."
         } else {
             boxText[3].innerText = moveExOrOh
             nextMove()
@@ -218,7 +242,7 @@ const click4 = () => {
         message.innerText = "The game's over! Press RESET GAME to play again."
     } else {
         if (filledSquare(4) === true) {
-            message.innerText = "Someone's already moved there"
+            message.innerText = "That square's occupied, try again."
         } else {
             boxText[4].innerText = moveExOrOh
             nextMove()
@@ -230,7 +254,7 @@ const click5 = () => {
         message.innerText = "The game's over! Press RESET GAME to play again."
     } else {
         if (filledSquare(5) === true) {
-            message.innerText = "Someone's already moved there"
+            message.innerText = "That square's occupied, try again."
         } else {
             boxText[5].innerText = moveExOrOh
             nextMove()
@@ -242,7 +266,7 @@ const click6 = () => {
         message.innerText = "The game's over! Press RESET GAME to play again."
     } else {
         if (filledSquare(6) === true) {
-            message.innerText = "Someone's already moved there"
+            message.innerText = "That square's occupied, try again."
         } else {
             boxText[6].innerText = moveExOrOh
             nextMove()
@@ -254,7 +278,7 @@ const click7 = () => {
         message.innerText = "The game's over! Press RESET GAME to play again."
     } else {
         if (filledSquare(7) === true) {
-            message.innerText = "Someone's already moved there"
+            message.innerText = "That square's occupied, try again."
         } else {
             boxText[7].innerText = moveExOrOh
             nextMove()
@@ -266,7 +290,7 @@ const click8 = () => {
         message.innerText = "The game's over! Press RESET GAME to play again."
     } else {
         if (filledSquare(8) === true) {
-            message.innerText = "Someone's already moved there"
+            message.innerText = "That square's occupied, try again."
         } else {
             boxText[8].innerText = moveExOrOh
             nextMove()
@@ -280,7 +304,7 @@ const click8 = () => {
 const clearSquares = () => {
     for (let i = 0; i < 9; i++) {
         boxText[i].innerText = ""
-        message.innerText = "The board has been reset"
+        message.innerText = "The board is cleared. As is custom, X, you go first."
         gameOver = false
         moveExOrOh = "X"
         moveNumber = 0
@@ -290,7 +314,7 @@ const clearSquares = () => {
 // I think looking further at addEventListener would streamline this.
 // The key, I think, is being able to pass and receive the box number
 // as a variable that I can just plug into functions, but I can't seem
-// to get that to work so going to long and messy but functional path.
+// to get that to work so going the long and messy but functional path.
 document.addEventListener('DOMContentLoaded', () => {
     resetButton.addEventListener("click", clearSquares)
     selectBox0.addEventListener("click", click0)
